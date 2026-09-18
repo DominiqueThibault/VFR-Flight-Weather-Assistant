@@ -64,6 +64,10 @@ RASA_LICENSE=your_rasa_license_here
 ### Run the Programme
 ```bash
 docker compose up --build
+```
+Make sure only vfr_mcp_server is running in detached mode to avoid port access failures.
+
+```bash
 docker compose up -d vfr_mcp_server
 docker compose run --rm --service-ports rasa rasa shell --debug
 ```
