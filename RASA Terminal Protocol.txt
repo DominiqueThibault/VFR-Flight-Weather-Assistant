@@ -1,0 +1,41 @@
+RASA Terminal Protocol
+
+SETUP
+
+echo 'OPENAI_API_KEY=<your OpenAI API key>' > .env
+
+python3.11 -m venv .venv && source .venv/bin/activate
+
+cd chapterx
+
+pip install --upgrade pips
+
+
+export RASA_LICENSE='<your Rasa license key>'
+
+
+INSTALLATION & START
+
+pip install rasa-pro==3.17.0
+
+python -m rasa --Version
+docker compose up -d vfr_mcp_server
+docker compose up -d vfr_mcp_server vfr_llama_inference
+
+
+TRAINING
+docker compose exec vfr_rasa_core rasa train
+
+TESTING 
+docker compose run --rm --service-ports vfr_rasa_core rasa inspect
+
+
+http://localhost:5005/webhooks/inspector/inspect.html?projectUrl=http%3A%2F%2Flocalhost%3A5005&channel=inspector
+
+SHELL
+
+docker compose run --rm --service-ports rasa rasa shell --debug
+
+
+LOGGING
+docker compose logs -f vfr_mcp_server

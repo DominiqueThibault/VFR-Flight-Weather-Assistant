@@ -1,0 +1,8 @@
+mcp==1.16.0
+httpx
+cachetools
+uvicorn
+fastapi
+pydantic
+airportsdata
+metar

@@ -1,0 +1,134 @@
+#This is the flight weather bot domain file containing:
+# - intents
+# - slots
+# - entities
+# - responses
+# - actions
+
+version: "3.1"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: True
+
+# Which variables are saved in memory?
+slots:
+  airport_icao:
+    type: text
+    influence_conversation: True
+    mappings:
+      - type: from_llm
+
+  city:
+    type: text
+    influence_conversation: True
+    mappings:
+      - type: from_llm
+
+  resolved_airport_icao:
+    type: text
+    mappings:
+      - type: controlled
+
+  date_time:
+    type: text
+    influence_conversation: True
+    mappings:
+      - type: from_llm
+
+  lat:
+    type: float
+    influence_conversation: True
+    mappings:
+      - type: controlled
+
+  lon:
+    type: float
+    influence_conversation: True
+    mappings:
+      - type: controlled
+
+  weather_delivered:
+    type: bool
+    mappings:
+      - type: controlled
+
+  user_feedback:
+    type: text
+    mappings:
+      - type: from_llm
+
+# What does the bot respond?
+responses:
+  utter_greet:
+    - text: |
+        Hi! I'm your flight weather assistant. 
+        I am here to help you with your flight preparations. 
+        What can I do for you, today?
+      metadata:
+        rephrase: true
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great flying day!"
+      metadata:
+        rephrase: true
+
+  utter_help:
+    - text: |
+        I can help you with:
+        - Checking airfield weather conditions
+        - Checking weather on your flight route at flight level.
+        - Provide you with a weather forecast (up to seven days ahead).
+        - Suggest alternative flight routes
+        Please note: I provide weather information for planning support only and hold no flight approval authority.
+      metadata:
+        rephrase: true
+
+  utter_disclaimer:
+    - text: |
+        Safety reminder: This information is for reference and pre-flight planning only.
+        Always verify with official aviation weather sources and make your own operational decisions 
+        as pilot-in-command.
+
+  utter_thanks_for_feedback:
+    - text: "Awesome! I am glad I could assist you. Safe flight and clear skies!"
+
+  utter_apology_and_help:
+    - text: "I am sorry to hear that. What else can I help you with to support your flight preparations?"
+
+  utter_ask_user_feedback:
+    - text: "Was this information helpful for you flight preparation?"
+      metadata:
+        rephrase: false
+
+  utter_ask_city:
+    - text: "For which city do you like to check the weather conditions?"
+      metadata:
+        rephrase: true
+
+  #utter_ask_airport_icao:
+    #- text: "For which location shall I check the weather conditions? Please provide the 4-letter ICAO code"
+      #metadata:
+        #rephrase: false
+
+  utter_ask_flight_date:
+    - text: "For which date would you like to check the weather conditions?"
+      metadata:
+        rephrase: false
+
+  utter_ask_date_time:
+    - text: "For which date and time do you want to check the weather forecast?"
+      metadata:
+        rephrase: false
+
+  utter_weather_fallback:
+    - text: |
+        I'm sorry, but I couldn't retrieve the weather data at the moment. 
+        Please check the connection or try an official METAR/TAF source directly.
+      metadata:
+        rephrase: false
+
+# What ations should the agent perform?
+actions:
+  - action_resolve_airport_icao
+  - action_ask_airport_icao

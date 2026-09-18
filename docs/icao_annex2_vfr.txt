@@ -1,0 +1,59 @@
+# This is the Annex 2 to the ICAO Convention on International Civil Aviation.
+# This Annex sets out the Rules of the Air governing the operation of aircraft in flight and on the ground.
+# This Document contains Chapter 4 - Visual Flight Rules (PARAPHRASED).
+
+# VFR Weather Assistant FAQ\nHere you can find applicable visual flight rules that are defined in the
+# International Standards for Rules of the Air:
+
+4.1 Unless operating as a special VFR flight, pilots flying under visual flight rules must maintain weather visibility
+and cloud separation minimums that meet or exceed those outlined in the following visual meteorological conditions
+(VMC) minima based on altitude bands and airspace classes. For altitudes at and above 3,050 meters (10,000 feet) AMSL
+across airspace classes A, B, C, D, E, F, and G, the required flight visibility is 8 kilometers, with a cloud
+separation of 1,500 meters horizontally and 300 meters (1,000 feet) vertically. For altitudes below 3,050 meters
+(10,000 feet) AMSL down to 900 meters (3,000 feet) AMSL (or 300 meters / 1,000 feet above terrain, whichever is higher)
+across airspace classes A, B, C, D, E, F, and G, the required flight visibility is 5 kilometers, maintaining 1,500
+meters horizontally and 300 meters (1,000 feet) vertically from clouds. For altitudes at and below 900 meters
+(3,000 feet) AMSL (or 300 meters / 1,000 feet above terrain, whichever is higher) within airspace classes A, B, C, D,
+and E, the visibility requirement is 5 kilometers, with a cloud separation of 1,500 meters horizontally and 300 meters
+(1,000 feet) vertically. Within airspace classes F and G at or below this low altitude band, the required visibility is
+5 kilometers, and flights must remain clear of cloud with the surface in sight. Additionally, if the transition
+altitude is lower than 3,050 meters (10,000 feet) AMSL, Flight Level 100 should replace 10,000 feet. The appropriate
+ATS authority may also permit reduced flight visibility down to no less than 1,500 meters for flights operating at
+appropriate speeds or in low-traffic/low-level conditions, as well as for helicopters moving at speeds that allow
+adequate opportunity to avoid obstacles. Finally, the VMC criteria listed for Class A airspace serve purely as pilot
+guidance and do not authorize VFR flights within Class A airspace.
+
+4.2 Unless an air traffic control unit grants clearance, VFR flights are prohibited from landing, taking off,
+entering a control zone's traffic zone, or joining a traffic pattern under the following conditions: a) When the cloud
+ceiling drops below 450 meters (1,500 feet); or b) When ground visibility falls under 5 kilometers.
+
+4.3 VFR operations conducted between sunset and sunrise—or during any alternative timeframe specified by the relevant
+ATS authority—must adhere strictly to conditions established by that authority. Without explicit authorization from the
+appropriate ATS authority, VFR flights are forbidden from operating: a) Higher than Flight Level 200; b) At transonic
+or supersonic velocities.
+
+4.5 Permits allowing VFR flights to cruise above Flight Level 290 will not be issued in regions where a vertical
+separation minimum of 300 meters (1,000 feet) is enforced above Flight Level 290.
+
+4.6 Barring necessary takeoff or landing maneuvers, or formal approval from the competent authority, VFR aircraft
+must avoid flying: a) Over crowded districts, towns, settlements, or outdoor public gatherings at an altitude lower
+than 300 meters (1,000 feet) above the highest obstacle situated within a 600-meter radius of the aircraft; b) Over
+any other terrain or water surface not covered by 4.6 a) at an altitude lower than 150 meters (500 feet).
+
+4.7 Unless overridden by air traffic control instructions or local ATS regulations, VFR level cruising flights
+maintained higher than 900 meters (3,000 feet) above the ground, water, or an alternative specified datum must fly
+at a cruising altitude that corresponds to their track trajectory based on the tables found in Appendix 3.
+
+4.8 VFR flights must comply with the requirements detailed in section 3.6 under the following conditions: a) When
+operating within Airspace Classes B, C, and D; b) When taking part in aerodrome traffic at controlled airports; or
+c) When flying as special VFR flights.
+
+4.9 When a VFR flight operates within, into, or along specific areas or routes designated by the relevant ATS
+authority under 3.3.1.2 c) or d), it must maintain a continuous listening watch on the appropriate air-ground
+voice communication channel and report its position as necessary to the air traffic services unit responsible for
+delivering flight information service.
+
+4.10 Any aircraft operating under visual flight rules that intends to transition to instrument flight rules must:
+a) Relay the necessary updates to its existing flight plan if one was previously filed; or b) File a flight plan with
+the appropriate air traffic services unit—as mandated by 3.3.1.2—and secure clearance prior to continuing under IFR
+while in controlled airspace.

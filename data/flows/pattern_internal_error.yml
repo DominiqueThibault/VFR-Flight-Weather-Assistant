@@ -1,0 +1,13 @@
+flows:
+  pattern_internal_error:
+    description: Handle internal errors, including MCP tool failures.
+    steps:
+      - noop: true
+        next:
+          - if: context.info.error_source is "mcp_tool"
+            then:
+              - action: utter_weather_fallback
+                next: END
+          - else:
+              - action: utter_internal_error_rasa
+                next: END
