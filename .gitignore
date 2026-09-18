@@ -24,6 +24,7 @@ htmlcov/
 *.swo
 
 # Environment variables / secrets
+.config/rasa/global.yml
 .env
 .env.*
 !.env.example
