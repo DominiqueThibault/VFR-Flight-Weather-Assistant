@@ -5,6 +5,10 @@ This project was developed as part of the International University of Applied Sc
 
 The programme runs an LLM-based flight weather agent configured to retrieve, translate and output METAR, TAF and NOAA data into plain and concise English language. 
 
+## Architecture & Stack
+
+## Project Structure
+
 ## Installation & Setup
 
 ### Prerequisites
@@ -19,29 +23,29 @@ The programme runs an LLM-based flight weather agent configured to retrieve, tra
 git clone [https://github.com/DominiqueThibault/Regression-Function-Mapping-/edit/main/README.md]
 cd VFR-Flight-Weather-Assistant
 ```
-### Create & activate virtual environment
+### Create & Activate Virtual Environment
 ```bash
 python -m venv venv
 python3.11 -m venv .venv && source .venv/bin/activate
 ```
-### Install dependencies
+### Install Dependencies
 ```bash
 pip install rasa-pro==3.18.1
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-### Install environment variables
+### Configurating Environment Variables
 OPENAI_API_KEY=your_openai_api_key_here
 RASA_LICENSE=your_rasa_license_here
 
-### Run the programme
+### Run the Programme
 ```bash
 docker compose up --build
 docker compose up -d vfr_mcp_server
 docker compose run --rm --service-ports rasa rasa shell --debug
 ```
 
-## Model training & testing
+## Model Training & Testing
 For training run:
 ```bash
 docker compose exec vfr_rasa_core rasa train
@@ -55,3 +59,4 @@ docker compose run --rm --service-ports vfr_rasa_core rasa inspect
 ## Technologies
 
 ## Author
+Dominique Thibault
