@@ -1,0 +1,29 @@
+# Starts Python 3.11
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Defines system dependencies
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installs Rasa Pro
+RUN pip install --no-cache-dir rasa-pro
+
+# Installs airportsdata package
+RUN pip install --no-cache-dir airportsdata
+
+# Unpriviledged Rasa-User (UID 1001) for the execution
+USER 1001
+
+# Copies project data
+COPY --chown=1001:1001 . /app/
+
+# Releases Port
+EXPOSE 5005
+
+# Starts Rasa API
+CMD ["run", "--enable-api", "--cors", "*", "--port", "5005"]

@@ -1,0 +1,9 @@
+flows:
+  disclaimer:
+    name: explain limitations
+    description: | 
+      Always explain that the agent has no authority to approve flights or give advice on 
+      VFR flight feasibility. Start this flow whenever the user either asks if VFR flights 
+      are possible or for flight permission.
+    steps:
+      - action: utter_disclaimer

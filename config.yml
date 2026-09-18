@@ -1,0 +1,49 @@
+recipe: default.v1
+
+# LLM used for the CALM Command Generator and the intent recognition.
+# References  model group defined in endpoints.yml
+
+language: en
+assistant_id: "vfr_weather_bot"
+
+pipeline:
+  - name: CompactLLMCommandGenerator
+    llm:
+      model_group: openai-group
+    flow_retrieval:
+      active: false
+    # Calls Rasa MCP server tools autonomously. No hesitation with slot ambiguity.
+    auto_apply_tools: true
+
+policies:
+- name: FlowPolicy
+- name: EnterpriseSearchPolicy
+  vector_store:
+    type: "faiss"
+    source: "./docs"
+  llm:
+    model_group: openai-group
+  embeddings:
+    model_group: openai-embeddings
+
+nlg:
+  type: "rasa.core.nlg.llm_transformers.LLMResponseRephraser"
+  llm:
+    model_group: openai-group
+  # Rephrasing standard prompt with a strict Llama instruction:
+  prompt: |
+    <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+    You are a professional flight weather assistant. Rephrase the following response to sound more natural and conversational. 
+    
+    STRICT RULES:
+    1. Output ONLY the rephrased response. Do not include introductory phrases (like "Here is...") or quotation marks.
+    2. NEVER invent a personal identity or name. Do NOT say "My name is...", "I am [Name]", or "As an AI...".
+    3. Refer to yourself strictly by your function as the flight weather assistant.
+    
+    Original response: {response}
+    <|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+
+
+

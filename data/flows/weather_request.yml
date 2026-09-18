@@ -1,0 +1,100 @@
+# This flow orchestrates the flight weather web crawling based on user input.
+
+flows:
+  weather_request:
+    description: |
+      Start this flow only when the user explicitly requests aviation weather
+      (METAR, TAF, or forecast). Collect airport icao, or fall back to city,
+      if the user does not know it. Do not start this flow for greetings, help,
+      or general conversation.
+
+    # Rasa checks, if slots.city is filled.
+    steps:
+      - id: check_initial_city
+        noop: true
+        next:
+          # If a city name is given as an initial prompt, Rasa proceeds with the custom action.
+          - if: slots.city
+            then: resolve_icao
+          # If slots.city is empty, Rasa proceeds with the next step: collect airport_icao.
+          - else: ask_airport_icao
+
+      # Rasa checks slot.airport_icao.
+      # User is asked for ICAO code.
+      - id: ask_airport_icao
+        collect: airport_icao
+        description: |
+          A 4-letter ICAO airport code like KJFK, EDDF, EGLL.
+          If the user does not know the code, set airport_icao to "unknown".
+        next:
+        # Checks direct ICAO code input, calls ReAct sub-agent and crawls METAR/TAF.
+          - if: slots.airport_icao matches "^[A-Za-z]{4}$"
+            then: ask_datetime
+        # Resolves city, if ICAO code is invalid.
+          - else: collect_city
+
+      - id: collect_city
+        # Asks user for a city name.
+        # Passes city name to custom action resolve_airport_icao.
+        collect: city
+        description: "City where the airport is located (e.g. London, New York)."
+        next: resolve_icao
+
+      - id: resolve_icao
+        # Checks for valid matches between city and ICAO code.
+        # Case 1: Raises an exception, when there are 0 matches.
+        # Case 2: Calls weather agent and returns crawled METAR/TAF in natural language for 1 match.
+        # Case 3: Asks user for specification for > 1 matches. After button click, proceed with flow.
+        action: action_resolve_airport_icao
+        next:
+          - if: slots.airport_icao
+            then: ask_datetime
+          - else: disambiguate_icao
+
+
+      - id: disambiguate_icao
+        collect: airport_icao
+        description: |
+          The user must pick exactly one ICAO code from the options shown.
+        next: ask_datetime
+
+      - id: ask_datetime
+        collect: date_time
+        description: "The date and time the pilot wants to check the flight weather for (e.g. 'tomorrow', 'now', '9 am'"
+        next: call_weather_agent
+
+      - id: call_weather_agent
+        # Crawls METAR/TAF data either for current or forcast weather.
+        description: |
+          If the user requests weather for a specific future date or time (like 'tomorrow' or a specific day or hour),
+          strictly use the 'get_taf' or 'get_noaa_forecast' tools.
+          Only use 'get_metar' if the user asks for current, immediate, or present weather (e.g. 'today', 'now').
+        call: flight_weather_agent
+        next: mark_weather_delivered
+
+      - id: mark_weather_delivered
+        set_slots:
+          - weather_delivered: true
+        next: collect_metrics
+
+      - id: collect_metrics
+        # Asks user if information given was helpful and stores answers in slot.
+        # Important for performance metric: user satisfaction.
+        collect: user_feedback
+        description: |
+          Ask whether the weather information was helpful.
+          Accept a simple yes or no answer.
+        next:
+          # LLM evaluates answer as positive (e.g. 'yes/sure/helpful')
+          - if: slots.user_feedback matches "(?i)^(yes|sure|yep|yeah|helpful|true)$"
+            then: utter_thanks
+          - else: utter_apology
+
+      - id: utter_thanks
+        action: utter_thanks_for_feedback
+        next: END
+
+      - id: utter_apology
+        action: utter_apology_and_help
+        next: END
+

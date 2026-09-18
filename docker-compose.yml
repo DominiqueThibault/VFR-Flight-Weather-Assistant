@@ -1,0 +1,55 @@
+networks:
+  vfr_network:
+    driver: bridge
+
+services:
+  # Container 1: Rasa CALM System (Dialogue & Orchestration)
+  vfr_rasa_core:
+    build:
+      context: .
+      dockerfile: Dockerfile.rasa
+    container_name: vfr_rasa_core
+    ports:
+      - "5005:5005"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - RASA_LICENSE=${RASA_LICENSE}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MPLCONFIGDIR=/tmp
+    env_file:
+      - .env
+    depends_on:
+      - vfr_mcp_server
+      - vfr_llama_inference
+    networks:
+      - vfr_network
+    command: [ "rasa", "run", "--enable-api", "--cors", "*", "--port", "5005", "--inspect" ]
+
+  # Container 2: MCP Server & APIs (with Caching-Layer & API integration for METAR/TAF/NOAA)
+  vfr_mcp_server:
+    build:
+      context: ./mcp_server
+      dockerfile: Dockerfile_mcp
+    container_name: vfr_mcp_server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mcp_server:/app
+    networks:
+      - vfr_network
+
+  # Container 3: Local LLM (Llama 3.2 inference for Edge/Offline operation an tablets)
+  vfr_llama_inference:
+    image: ollama/ollama:latest
+    container_name: vfr_llama_inference
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - vfr_network
+
+volumes:
+  ollama_data:

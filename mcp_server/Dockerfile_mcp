@@ -1,0 +1,24 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies (mandatory for certain PYthon packages)
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installs Python metar-taf-parser directly.
+RUN pip install --no-cache-dir metar
+
+# Copy and install system dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy remaining code
+COPY . /app
+
+# Starting command for MCP server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

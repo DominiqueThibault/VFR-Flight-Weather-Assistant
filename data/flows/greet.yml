@@ -1,0 +1,7 @@
+flows:
+  greet:
+    name: greet user
+    description: Greet the user when they start a conversation.
+    steps:
+      - action: utter_greet
+      - action: utter_disclaimer

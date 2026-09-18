@@ -1,0 +1,58 @@
+# This is the Annex 2 to the ICAO Convention on International Civil Aviation.
+# This Annex sets out the Rules of the Air governing the operation of aircraft in flight and on the ground.
+# This Document contains Chapter 1 - Definitions (PARAPHRASED).
+
+# VFR Weather Assistant FAQ\nHere you can find general definitions of terms that are used in the
+# International Standards for Rules of the Air:
+
+Aerodrome
+A defined area on land or water (including any buildings, installations and equipment) intended to be used either
+wholly or in part for the arrival, departure and surface movement of aircraft.
+
+Aeroplane
+A power-driven heavier-than-air aircraft, deriving its lift in flight chiefly from aerodynamic reactions on surfaces
+which remain fixed under given conditions of flight.
+
+Aircraft
+Any machine that can derive support in the atmosphere from the reactions of the air other than the reactions of the air
+against earth's surface.
+
+Altitude
+The vertical distance of a level, a point or an object considered as a point, measured from mean sea level (MSL).
+
+Ceiling
+The height above the ground or water of the base of the lowest layer of cloud below 6000 metres (20000 feet) covering
+more than half the sky.
+
+IFR flight
+A flight conducted in accordance with the instrument flight rules.
+
+IMC
+The symbol used to designate instrument meteorological conditions.
+
+Pilot-in-command
+The pilot designated by the operator, or in the case of general aviation, the owner, as being in command and charged
+with the safe conduct of a flight.
+
+Pressure-altitude
+An atmospheric pressure expressed in terms of altitude which corresponds to that pressure in the Standard Atmosphere.
+
+Special VFR flight
+A VFR flight cleared by air traffic control to operate within a control zone in meteorological conditions below VMC.
+
+VFR
+The symbol used to designate the visual flight rules.
+
+VFR flight
+A flight conducted in accordance with the visual flight rules.
+
+Visibility
+Visibility for aeronautical purposes is the greater of: a) the greatest distance at which a black object of suitable
+dimensions, situated near ground, can be seen and recognized when observed against a bright background; b) the greatest
+distance at which lights in the vicinity of 1000 candelas can be seen and identified against an unlit background.
+
+VMC
+The symbol used to designate visual meteorological conditions.
+
+
+
