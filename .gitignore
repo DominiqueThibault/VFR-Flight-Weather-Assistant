@@ -41,6 +41,7 @@ logs/
 
 # Runtime files
 *.log
+*.zip
 tmp/
 temp/
 .cache/
