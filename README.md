@@ -79,7 +79,5 @@ For testing with the Rasa Inspector run:
 docker compose run --rm --service-ports vfr_rasa_core rasa inspect
 ```
 
-## Technologies
-
 ## Author
 Dominique Thibault
