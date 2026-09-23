@@ -19,7 +19,7 @@ The entire process is managed by a multi-stack Docker container environment stor
 * **Data Sources**: airportsdata (for ICAO validation and resolving city names to a proper ICAO code)
 
 ## Project Structure
-
+```text
 ├── actions/               # Rasa Custom Actions (e.g. airportsdata integration)
 ├── data/                  # Rasa Flows, Rules, Patterns & Training-Stories
 ├── docs/                  # VFR Regulations, FAQs & Texts for FAISS RAG
@@ -33,7 +33,7 @@ The entire process is managed by a multi-stack Docker container environment stor
 ├── docker-compose.yml     # Container Orchestration
 ├── endpoints.yml          # Endpoints & LLM-/Embeddings
 ├── requirements.txt       # Central Python Dependencies (e.g. metar, fastmcp)
-
+```
 ## Pre-conditions & Installation
 
 ### Clone Repository
