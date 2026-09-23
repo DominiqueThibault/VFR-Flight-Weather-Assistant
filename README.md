@@ -33,3 +33,39 @@ The entire process is managed by a multi-stack Docker container environment stor
 ├── docker-compose.yml     # Container Orchestration
 ├── endpoints.yml          # Endpoints & LLM-/Embeddings
 ├── requirements.txt       # Central Python Dependencies (e.g. metar, fastmcp)
+
+## Pre-conditions & Installation
+
+### Clone Repository
+```bash
+git clone [https://github.com/DominiqueThibault/VFR-Flight-Weather-Assistant]
+cd VFR-Flight-Weather-Assistant
+```
+
+### Create virtual environment
+```bash
+uv venv --python 3.11
+# macOS/Linux:
+source venv/bin/activate
+# Windows (PowerShell):
+venv\Scripts\Activate.ps1
+```
+### Install Dependencies
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Configuration & Environment Variables
+1. Request free Rasa license key here: https://rasa.com/rasa-pro-developer-edition-license-key-request
+2. Get OpenAI API Key here: https://openai.com/de-DE/index/openai-api/
+3. Create an .env file in your main directory that stores:
+```bash
+RASA_LICENSE_KEY=your_rasa_license_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### Execution & Start
+
+
+
