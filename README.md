@@ -5,10 +5,18 @@ This project comprises an intelligent, locally operated LLM-based flight weather
 
 **DISCLAIMER**: This assistant is created for **informational purposes only** and does not exercise any flight approval authority nor does it release the pilot-in-command from any obligations to check official flight weather sources or from the responsibility for any decisions made.
 
+## Features
+
+- Weather information for VFR pilots
+- Natural-language interaction
+- Text interaction
+- Rasa-based dialogue system
+- Multi-stack management with Docker environment
+- Weather data integration
+
 ## Architecture & Stack
 The set-up is based on the Rasa CALM (Conversational AI with Language Models) system integrating business logic flows, custom actions and LLM reasoning for real-time METAR, TAF and NOAA retrieval, parsing and translation into plain and concise English language.
 The entire process is managed by a multi-stack Docker container environment storing 1) the Rasa core logic, 2) the LLM inference, and 3) the MCP server.
-
 
 * **Conversational AI:** Rasa Pro, 3.18.1 or higher recommended
 * **LLM & Embeddings:** OpenAI (gpt-5.1-2025-11-13, text-embedding-3-large), Ollama (Llama 3.2)
@@ -20,19 +28,19 @@ The entire process is managed by a multi-stack Docker container environment stor
 
 ## Project Structure
 ```text
-├── actions/               # Rasa Custom Actions (e.g. airportsdata integration)
-├── data/                  # Rasa Flows, Rules, Patterns & Training-Stories
-├── docs/                  # VFR Regulations, FAQs & Texts for FAISS RAG
-├── domain/                # Memory Slots, Responses, Actions 
-├── mcp_server/            # Docker compatible MCP Server
-├── sub-agents/            # Sub-Agent Configuration
-├── .env.example           # Template for Environment File (API Keys, License Key, Tokens)
-├── Dockerfile.rasa        # Defines Rasa Core Logic Container in Docker
-├── config.yml             # Rasa Konfiguration (Policies, FlowPolicy, EnterpriseSearch)
+├── actions/               # Rasa custom actions (e.g. airportsdata integration)
+├── data/                  # Rasa flows, rules, patterns & training stories
+├── docs/                  # VFR regulations, FAQs & texts for FAISS RAG
+├── domain/                # Memory slots, responses, actions 
+├── mcp_server/            # Docker compatible MCP server
+├── sub-agents/            # Sub-agent configuration
+├── .env.example           # Template for environment variables (API Keys, License Key, Tokens)
+├── Dockerfile.rasa        # Defines Rasa core container in Docker
+├── config.yml             # Rasa configuration (FlowPolicy, EnterpriseSearch)
 ├── credentials.yml        # Channels (e.g. Socket.IO, REST, and UI channels)
-├── docker-compose.yml     # Container Orchestration
-├── endpoints.yml          # Endpoints & LLM-/Embeddings
-├── requirements.txt       # Central Python Dependencies (e.g. metar, fastmcp)
+├── docker-compose.yml     # Container orchestration
+├── endpoints.yml          # Endpoints & LLMs/embeddings
+├── requirements.txt       # Central Python dependencies (e.g. metar, fastmcp)
 ```
 ## Pre-conditions & Installation
 
@@ -96,11 +104,11 @@ rasa run
 ```
 
 ## Limitations
-* No multi-model interaction
-* LLM reasoning restricted by deterministic rules for safety concerns
 * Online operation
+* No multi-model interaction
 * METAR/TAF/NOOA retrieval only
 * No testing in real-time flight situations yet
+* LLM reasoning restricted by deterministic rules for safety concerns
 
 ## Future Improvements
 * Appealing UI
