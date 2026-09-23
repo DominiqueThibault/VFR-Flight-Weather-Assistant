@@ -15,5 +15,21 @@ The entire process is managed by a multi-stack Docker container environment stor
 * **Knowledge base (RAG):** FAISS (Facebook AI Similarity Search) vector store (./docs with ICAO international Rule of Air excerpts)
 * **Backend & Endpoints**: Python (version 3.11.9 or higher recommended, 3.14x for Rasa pro 3.19x), Uvicorn, Socket.IO, REST 
 * **Containerizing**: Docker (29.8.0) & Docker Compose (for multi-stack management)
-* **MCP Server**: FastMCP (for METAR, TAF, NOAA retrieval)
+* **MCP Server**: FastMCP (for METAR, TAF, NOAA retrieval) enabling tool call via https://aviationweather.gov API
 * **Data Sources**: airportsdata (for ICAO validation and resolving city names to a proper ICAO code)
+
+## Project Structure
+
+├── actions/               # Rasa Custom Actions (e.g. airportsdata integration)
+├── data/                  # Rasa Flows, Rules, Patterns & Training-Stories
+├── docs/                  # VFR Regulations, FAQs & Texts for FAISS RAG
+├── domain/                # Memory Slots, Responses, Actions 
+├── mcp_server/            # Docker compatible MCP Server
+├── sub-agents/            # Sub-Agent Configuration
+├── .env.example           # Template for Environment File (API Keys, License Key, Tokens)
+├── Dockerfile.rasa        # Defines Rasa Core Logic Container in Docker
+├── config.yml             # Rasa Konfiguration (Policies, FlowPolicy, EnterpriseSearch)
+├── credentials.yml        # Channels (e.g. Socket.IO, REST, and UI channels)
+├── docker-compose.yml     # Container Orchestration
+├── endpoints.yml          # Endpoints & LLM-/Embeddings
+├── requirements.txt       # Central Python Dependencies (e.g. metar, fastmcp)
