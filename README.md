@@ -77,11 +77,13 @@ OPENAI_API_KEY=your_openai_api_key_here
 docker compose up --build
 docker compose ps 
 ```
-2. Train the Model: The trained model is intentionally **not included in the repository** and needs to be generated locally.
+2. Train the Model: <br>
+The trained model is intentionally **not included in the repository** and needs to be generated locally.
 ```bash
 docker compose exec vfr_rasa_core rasa train
 ```
-4. Test the Model: This runs the Rasa Inspector, an in-browser testing & debugging panel with visualized logic & workflows.
+4. Test the Model: <br>
+This runs the Rasa Inspector, an in-browser testing & debugging panel with visualized logic & workflows.
 ```bash
 docker compose down
 docker compose up -d vfr_mcp_server
@@ -91,14 +93,14 @@ docker compose up -d vfr_mcp_server
 docker compose run --rm --service-ports vfr_rasa_core rasa inspect
 ```
 
-5. Load your trained model and talk to your assistant on the command line.
+5. Load your trained model and talk to your assistant on the command line:
 ```bash
 rasa shell --debug
 ```
 
 OR
 
-6. Start a server with your trained model.
+6. Start a server with your trained model:
 ```bash
 rasa run
 ```
@@ -121,6 +123,6 @@ rasa run
 * RAG including aircraft type-specific manuals, performance specifications and emergency procedures
 
 ## Author
-Dominique Thibault
-IU University of Applied Sciences
+Dominique Thibault <br>
+IU University of Applied Sciences <br>
 Seminar: Project AI Use Case 
