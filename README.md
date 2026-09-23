@@ -43,6 +43,8 @@ cd VFR-Flight-Weather-Assistant
 ```
 
 ### Create virtual environment
+Install uvicorn here: https://docs.astral.sh/uv/getting-started/installation/
+
 ```bash
 uv venv --python 3.11
 # macOS/Linux:
@@ -66,6 +68,22 @@ OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ### Execution & Start
+1. Run Docker Environment:
+```bash
+docker compose up --build
+docker compose ps 
+```
+2. Train the Model
+```bash
+docker compose exec vfr_rasa_core rasa train
+```
+4. Test the Model
+Make sure:
+```bash
+docker compose down
+docker compose up -d vfr_mcp_server
+```
 
-
-
+```bash
+docker compose run --rm --service-ports vfr_rasa_core rasa inspect
+```
