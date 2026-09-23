@@ -96,11 +96,18 @@ rasa run
 ```
 
 ## Limitations
-* METAR/TAF/NOOA only
+* METAR/TAF/NOOA retrieval only
 * No chitchat
 
 ## Future Improvements
-*
+* Appealing UI
+* Edge-mode operation
+* Voice-based interactions
+* Image recognition: weather maps
+* Alternative flight route recommendations
+* Client feedback for user experience optimization
+* Alerts & Warnings (from NOTAM, SIGMETs, FIRs etc.)
+* RAG including aircraft type-specific manuals, performance specifications and emergency procedures
 
 ## Author
 Dominique Thibault
