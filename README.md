@@ -43,8 +43,6 @@ cd VFR-Flight-Weather-Assistant
 ```
 
 ### Create virtual environment
-Install uvicorn here: https://docs.astral.sh/uv/getting-started/installation/
-
 ```bash
 uv venv --python 3.11
 # macOS/Linux:
@@ -57,7 +55,6 @@ venv\Scripts\Activate.ps1
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-
 ### Configuration & Environment Variables
 1. Request free Rasa license key here: https://rasa.com/rasa-pro-developer-edition-license-key-request
 2. Get OpenAI API Key here: https://openai.com/de-DE/index/openai-api/
@@ -66,19 +63,17 @@ pip install -r requirements.txt
 RASA_LICENSE_KEY=your_rasa_license_key_here
 OPENAI_API_KEY=your_openai_api_key_here
 ```
-
 ### Execution & Start
 1. Run Docker Environment:
 ```bash
 docker compose up --build
 docker compose ps 
 ```
-2. Train the Model
+2. Train the Model: The trained model is intentionally **not included in the repository** and needs to be generated locally.
 ```bash
 docker compose exec vfr_rasa_core rasa train
 ```
-4. Test the Model
-Make sure:
+4. Test the Model: This runs the Rasa Inspector, an in-browser testing & debugging panel with visualized logic & workflows.
 ```bash
 docker compose down
 docker compose up -d vfr_mcp_server
@@ -87,3 +82,25 @@ docker compose up -d vfr_mcp_server
 ```bash
 docker compose run --rm --service-ports vfr_rasa_core rasa inspect
 ```
+
+5. Load your trained model and talk to your assistant on the command line.
+```bash
+rasa shell --debug
+```
+
+OR
+
+6. Start a server with your trained model.
+```bash
+rasa run
+```
+
+## Limitations
+* METAR/TAF/NOOA only
+* No chitchat
+
+## Future Improvements
+*
+
+## Author
+Dominique Thibault
