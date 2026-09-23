@@ -1,4 +1,5 @@
 flows:
+  # This flow ends the conversation with a natural-sounding farewell.
   farewell:
     name: goodbye
     description: Say goodbye when the user ends the conversation.

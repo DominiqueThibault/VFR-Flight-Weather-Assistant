@@ -7,7 +7,7 @@ language: en
 assistant_id: "vfr_weather_bot"
 
 pipeline:
-  - name: CompactLLMCommandGenerator
+  - name: SearchReadyLLMCommandGenerator
     llm:
       model_group: openai-group
     flow_retrieval:
@@ -18,6 +18,8 @@ pipeline:
 policies:
 - name: FlowPolicy
 - name: EnterpriseSearchPolicy
+  include_date_time: true
+  timezone: "Europe/London"
   vector_store:
     type: "faiss"
     source: "./docs"

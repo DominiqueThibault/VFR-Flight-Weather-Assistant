@@ -109,6 +109,7 @@ class ActionResolveAirportICAO(Action):
             ]
 
 class ActionAskAirportIcao(Action):
+    #Presents dynamic buttons for multiple choice options.
     def name(self) -> Text:
         return "action_ask_airport_icao"
 
@@ -124,13 +125,13 @@ class ActionAskAirportIcao(Action):
         # Creates dynamic buttons for the user
         buttons = []
         for c in candidates:
-            # Important: The payload sets the slot directly when clicking the ICAO code
+            # Important: The payload sets the slot directly when clicking on the ICAO code.
             payload_string = f'/SetSlots(airport_icao={c["icao"]})'
             buttons.append({
                 'title': f"{c['name']} ({c['icao']})",
                 'payload': payload_string
             })
-
+        # Message user gets when confronted with the buttons.
         dispatcher.utter_message(
             text=f"I found {len(candidates)} airports matching your request. Please select one:",
             buttons=buttons

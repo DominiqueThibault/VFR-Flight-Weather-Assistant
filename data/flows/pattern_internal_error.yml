@@ -1,4 +1,5 @@
 flows:
+  # This flow handles internal errors and elegantly traces back to fallback messages.
   pattern_internal_error:
     description: Handle internal errors, including MCP tool failures.
     steps:

@@ -1,4 +1,6 @@
 flows:
+  # This flow initially starts the conversation with a natural-sounding greeting.
+  # Dispatches the disclaimer message.
   greet:
     name: greet user
     description: Greet the user when they start a conversation.

@@ -1,7 +1,6 @@
-# This flow orchestrates the flight weather web crawling based on user input.
-
 flows:
   weather_request:
+    # This flow orchestrates the flight weather web crawling based on user input.
     description: |
       Start this flow only when the user explicitly requests aviation weather
       (METAR, TAF, or forecast). Collect airport icao, or fall back to city,
@@ -17,11 +16,11 @@ flows:
           - if: slots.city
             then: resolve_icao
           # If slots.city is empty, Rasa proceeds with the next step: collect airport_icao.
-          - else: ask_airport_icao
+          - else: collect_airport_icao
 
       # Rasa checks slot.airport_icao.
       # User is asked for ICAO code.
-      - id: ask_airport_icao
+      - id: collect_airport_icao
         collect: airport_icao
         description: |
           A 4-letter ICAO airport code like KJFK, EDDF, EGLL.
@@ -44,21 +43,22 @@ flows:
         # Checks for valid matches between city and ICAO code.
         # Case 1: Raises an exception, when there are 0 matches.
         # Case 2: Calls weather agent and returns crawled METAR/TAF in natural language for 1 match.
-        # Case 3: Asks user for specification for > 1 matches. After button click, proceed with flow.
         action: action_resolve_airport_icao
         next:
           - if: slots.airport_icao
             then: ask_datetime
           - else: disambiguate_icao
 
-
       - id: disambiguate_icao
+        # Case 3: Asks user for specification for > 1 matches presenting dynamic buttons.
+        # Proceeds with flow after button click.
         collect: airport_icao
         description: |
           The user must pick exactly one ICAO code from the options shown.
         next: ask_datetime
 
       - id: ask_datetime
+        # Asks date and time to check current or forecast weather.
         collect: date_time
         description: "The date and time the pilot wants to check the flight weather for (e.g. 'tomorrow', 'now', '9 am'"
         next: call_weather_agent
@@ -73,9 +73,37 @@ flows:
         next: mark_weather_delivered
 
       - id: mark_weather_delivered
+        # Helps sub-agent define ending for weather request.
         set_slots:
           - weather_delivered: true
-        next: collect_metrics
+        next: ask_further_help
+
+      - id: ask_further_help
+        # Asks user if any further aid is needed.
+        collect: user_needs
+        description: |
+          Ask whether the user wants to check another airport or time.
+          Accept a simple yes or no answer.
+        next:
+          # Calls weather agent again, if user confirms.
+          - if: slots.user_needs matches "(?i)^(yes|sure|yep|yeah|helpful|true)$"
+            then: reset_and_start_over
+            # OR proceeds to the next step.
+          - else: collect_metrics
+
+      - id: reset_and_start_over
+        # Resets all the slots for new user queries.
+        # Avoids endless loops.
+        set_slots:
+          - airport_icao: null
+          - resolved_airport_icao: null
+          - city: null
+          - date_time: null
+          - weather_delivered: null
+          - lat: null
+          - lon: null
+          - user_needs: null
+        next: collect_city
 
       - id: collect_metrics
         # Asks user if information given was helpful and stores answers in slot.
@@ -91,10 +119,13 @@ flows:
           - else: utter_apology
 
       - id: utter_thanks
+        # Thanks the user and ends conversation.
         action: utter_thanks_for_feedback
         next: END
 
       - id: utter_apology
+        # Apologies to the user and ends the conversation.
+        # Indicates user should try again.
         action: utter_apology_and_help
         next: END
 

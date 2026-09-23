@@ -1,6 +1,7 @@
 flows:
+  # This flow enables EnterpriseResearchPolicy by handling knowledge-based questions.
   pattern_search:
     name: pattern search
-    description: Answers knowledge questions using the enterprise search index.
+    description: handle a knowledge-based question or request.
     steps:
       - action: action_trigger_search

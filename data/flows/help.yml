@@ -1,7 +1,0 @@
-flows:
-  help:
-    name: help user
-    description: Explain what the agent can do.
-    steps:
-      - action: utter_help
-      - action: utter_disclaimer

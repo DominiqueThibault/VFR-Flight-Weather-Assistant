@@ -1,4 +1,5 @@
 flows:
+  # This flow ensures safety constraints are applied and made visible to the user.
   disclaimer:
     name: explain limitations
     description: | 

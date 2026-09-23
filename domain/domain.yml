@@ -1,7 +1,5 @@
 #This is the flight weather bot domain file containing:
-# - intents
 # - slots
-# - entities
 # - responses
 # - actions
 
@@ -58,6 +56,11 @@ slots:
     mappings:
       - type: from_llm
 
+  user_needs:
+    type: text
+    mappings:
+      - type: from_llm
+
 # What does the bot respond?
 responses:
   utter_greet:
@@ -73,17 +76,6 @@ responses:
       metadata:
         rephrase: true
 
-  utter_help:
-    - text: |
-        I can help you with:
-        - Checking airfield weather conditions
-        - Checking weather on your flight route at flight level.
-        - Provide you with a weather forecast (up to seven days ahead).
-        - Suggest alternative flight routes
-        Please note: I provide weather information for planning support only and hold no flight approval authority.
-      metadata:
-        rephrase: true
-
   utter_disclaimer:
     - text: |
         Safety reminder: This information is for reference and pre-flight planning only.
@@ -94,27 +86,23 @@ responses:
     - text: "Awesome! I am glad I could assist you. Safe flight and clear skies!"
 
   utter_apology_and_help:
-    - text: "I am sorry to hear that. What else can I help you with to support your flight preparations?"
+    - text: "I am sorry to hear that. Please, try again with another airport and/or time."
 
   utter_ask_user_feedback:
     - text: "Was this information helpful for you flight preparation?"
       metadata:
         rephrase: false
 
+  utter_ask_user_needs:
+    - text: "I can help you with anything else?"
+      metadata:
+        rephrase: true
+
   utter_ask_city:
     - text: "For which city do you like to check the weather conditions?"
       metadata:
         rephrase: true
 
-  #utter_ask_airport_icao:
-    #- text: "For which location shall I check the weather conditions? Please provide the 4-letter ICAO code"
-      #metadata:
-        #rephrase: false
-
-  utter_ask_flight_date:
-    - text: "For which date would you like to check the weather conditions?"
-      metadata:
-        rephrase: false
 
   utter_ask_date_time:
     - text: "For which date and time do you want to check the weather forecast?"
@@ -128,7 +116,7 @@ responses:
       metadata:
         rephrase: false
 
-# What ations should the agent perform?
+# What actions should the agent perform?
 actions:
   - action_resolve_airport_icao
   - action_ask_airport_icao
