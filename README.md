@@ -96,8 +96,11 @@ rasa run
 ```
 
 ## Limitations
+* No multi-model interaction
+* LLM reasoning restricted by deterministic rules for safety concerns
+* Online operation
 * METAR/TAF/NOOA retrieval only
-* No chitchat
+* No testing in real-time flight situations yet
 
 ## Future Improvements
 * Appealing UI
@@ -111,3 +114,5 @@ rasa run
 
 ## Author
 Dominique Thibault
+IU University of Applied Sciences
+Seminar: Project AI Use Case 
