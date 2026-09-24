@@ -1,12 +1,11 @@
 # VFR-Flight-Weather-Assistant
 
 ## Description
-This project comprises an intelligent, locally operated LLM-based flight weather assistant planned to support private pilots in pre- and in-flight decision-making. It renders current and forecast airport weather conditions relevant for aviators applying visual flight rules (VFR). The combination of deterministic business logic flows and LLM language generation balances safe operation with nuanced natural language comprehension. Retrieval Augmented Generation (RAG) enables querying for VMC minima, safety regulations and general international Rules of Air definitions. 
+This project comprises an intelligent, locally operated LLM-based flight weather assistant planned to support private pilots in pre- and in-flight decision-making. It renders current and forecast airport weather conditions relevant for aviators applying visual flight rules (VFR). The combination of deterministic business logic flows and LLM language generation balances safe operation with nuanced natural language comprehension. Retrieval Augmented Generation (RAG) enables querying a knowledge database for VMC minima, safety regulations and general international Rules of Air definitions. 
 
-**DISCLAIMER**: This assistant is created for **informational purposes only** and does not exercise any flight approval authority nor does it release the pilot-in-command from any obligations to check official flight weather sources or from the responsibility for any decisions made.
+**DISCLAIMER**: This assistant is created for **informational purposes only** and does not exercise or replace any flight approval authority nor does it release the pilot-in-command from any obligations to check official flight weather sources or from the responsibility for any decisions made.
 
 ## Features
-
 - Weather information for VFR pilots
 - Natural-language interaction
 - Text interaction
