@@ -21,7 +21,7 @@ The entire process is managed by a multi-stack Docker container environment stor
 * **LLM & Embeddings:** OpenAI (gpt-5.1-2025-11-13, text-embedding-3-large), Ollama (Llama 3.2)
 * **Knowledge base (RAG):** FAISS (Facebook AI Similarity Search) vector store (./docs with ICAO international Rule of Air excerpts)
 * **Backend & Endpoints**: Python (version 3.11.9 or higher recommended, 3.14x for Rasa pro 3.19x), Uvicorn, Socket.IO, REST 
-* **Containerizing**: Docker (29.8.0) & Docker Compose (for multi-stack management)
+* **Containerizing**: Docker (Version 4.92.0 (240144)) & Docker Compose (for multi-stack management)
 * **MCP Server**: FastMCP (for METAR, TAF, NOAA retrieval) enabling tool call via https://aviationweather.gov API
 * **Data Sources**: airportsdata (for ICAO validation and resolving city names to a proper ICAO code)
 
