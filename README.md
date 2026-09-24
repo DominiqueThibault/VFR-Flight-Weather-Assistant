@@ -82,7 +82,7 @@ The trained model is intentionally **not included in the repository** and needs 
 docker compose exec vfr_rasa_core rasa train
 ```
 4. Test the Model: <br>
-This runs the Rasa Inspector, an in-browser testing & debugging panel with visualized logic & workflows.
+This runs the Rasa Inspector - an in-browser testing & debugging panel with visualized logic & workflows.
 ```bash
 docker compose down
 docker compose up -d vfr_mcp_server
